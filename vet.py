@@ -29,6 +29,22 @@ Celsius2f = (f"{Celsius:.2f}")
 Kilogrammes2f = (f"{Kilogrammes:.2f}")
 Masse2f = (f"{Masse:.2f}")
 Température2f = (f"{Température:.2f}")
+Indice_de_vitalité = 100
+
+#Stupide Varriable fixe qui a du refaire le 3/4 de mes instruction if/else
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # #IF et ELSE et MATCH Température/Masse ET Âge ET normes T/M
 
@@ -60,6 +76,13 @@ match Espèce:
                 Type_Age = "Senior"
         else:
             Type_Age = "Junévile"
+        if Indice_de_vitalité < 100:
+            if Température_C == "Mauvaise":
+                verdict = "URGENT"
+            else:
+                verdict = "SURVEILLANCE"
+        else:
+            verdict = "NORMAL"
 
     case 2:
         Type_espèce = "tigre"
@@ -88,6 +111,19 @@ match Espèce:
                 Type_Age = "Senior"
         else:
             Type_Age = "Junévile"
+        if Indice_de_vitalité < 100:
+            if Température_C == "Mauvaise":
+                if Poid == "Mauvais":
+                    verdict = "URGENT"
+            else:
+                verdict = "SURVEILLANCE"
+            if Poid == "Mauvais":
+                if Température_C == "Mauvaise":
+                    verdict = "URGENT"
+            else:
+                verdict = "SURVEILLANCE"
+        else:
+            verdict = "NORMAL"  
 
     case 3:
         Type_espèce = "gnou"
@@ -116,6 +152,19 @@ match Espèce:
                 Type_Age = "Senior"
         else:
             Type_Age = "Junévile"
+        if Indice_de_vitalité < 100:
+            if Température_C == "Mauvaise":
+                if Poid == "Mauvais":
+                    verdict = "URGENT"
+            else:
+                verdict = "SURVEILLANCE"
+            if Poid == "Mauvais":
+                if Température_C == "Mauvaise":
+                    verdict = "URGENT"
+            else:
+                verdict = "SURVEILLANCE"
+        else:
+            verdict = "NORMAL"  
 
 #Indice de Vitalité
 
@@ -130,33 +179,6 @@ elif (Poid == "Mauvais"):
        Indice_de_vitalité -= 20
        if (Température_C == "Mauvaise"):
            Indice_de_vitalité -= 30
-
-#VERDICT
-
-match Type_espèce:
-    case 1:
-        if Indice_de_vitalité < 100:
-            if Température_C == "Mauvaise":
-                verdict = "URGENT"
-            else:
-                verdict = "SURVEILLANCE"
-        else:
-            verdict = "NORMAL"
-    case 2:
-        if Indice_de_vitalité < 100:
-            if Température_C == "Mauvaise":
-                if Poid == "Mauvais":
-                    verdict = "URGENT"
-            else:
-                verdict = "SURVEILLANCE"
-
-
-
-
-
-
-
-
 
 # Interface des données
 
@@ -184,5 +206,5 @@ print(f"{Tiret:-^80}")
 print(f"")
 print(f"{Tiret:-^80}")
 print(f"Indice de vitalité : {Indice_de_vitalité} / 100")
-print(f"")
+print(f"VERDICT : {verdict}")
 print(f"{LigneÉgal:=^80}")
