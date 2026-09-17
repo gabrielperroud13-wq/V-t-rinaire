@@ -2,7 +2,6 @@
 # Veterinaire
 # 2026-09-15
 
-
 #Interface des Information
 
 Titre = "INFORMATION SUR LE SPÉCIMEN"
@@ -34,17 +33,21 @@ Indice_de_vitalité = 100
 #Stupide Varriable fixe qui a du refaire le 3/4 de mes instruction if/else
 
 
+TEMPERATURE_MIN_REQUIN = 22.0
+TEMPERATURE_MAX_REQUIN = 26.0
+MASSE_MIN_REQUIN = 60.0
+MASSE_MAX_REQUIN = 150.0
 
 
+TEMPERATURE_MIN_TIGRE = 37.5
+TEMPERATURE_MAX_TIGRE = 39.0
+MASSE_MIN_TIGRE = 100.0
+MASSE_MAX_TIGRE = 260.0
 
-
-
-
-
-
-
-
-
+TEMPERATURE_MIN_GNOU = 37.5
+TEMPERATURE_MAX_GNOU = 39.0
+MASSE_MIN_GNOU = 120.0
+MASSE_MAX_GNOU = 270.0
 
 # #IF et ELSE et MATCH Température/Masse ET Âge ET normes T/M
 
