@@ -30,51 +30,66 @@ Masse2f = (f"{Masse:.2f}")
 Température2f = (f"{Température:.2f}")
 Indice_de_vitalité = 100
 
-#Stupide Varriable fixe qui a du refaire le 3/4 de mes instruction if/else
+#Varriable fixe
 
 
 TEMPERATURE_MIN_REQUIN = 22.0
 TEMPERATURE_MAX_REQUIN = 26.0
 MASSE_MIN_REQUIN = 60.0
 MASSE_MAX_REQUIN = 150.0
+AGE_MIN_ADULTE_REQUIN = 60
+AGE_MAX_ADULTE_REQUIN = 239
 
 
 TEMPERATURE_MIN_TIGRE = 37.5
 TEMPERATURE_MAX_TIGRE = 39.0
 MASSE_MIN_TIGRE = 100.0
 MASSE_MAX_TIGRE = 260.0
+AGE_MIN_ADULTE_TIGRE = 36
+AGE_MAX_ADULTE_TIGRE = 143
 
 TEMPERATURE_MIN_GNOU = 37.5
 TEMPERATURE_MAX_GNOU = 39.0
 MASSE_MIN_GNOU = 120.0
 MASSE_MAX_GNOU = 270.0
+AGE_MIN_ADULTE_GNOU = 36
+AGE_MAX_ADULTE_GNOU = 180
 
 # #IF et ELSE et MATCH Température/Masse ET Âge ET normes T/M
+
+import math
 
 match Espèce:
     case 1:
         Type_espèce = "requin"
         normesT = "22,0-26,0"
         normesM = "60,0-150,0"
-        if Celsius >= 22.0:
+        if Celsius >= TEMPERATURE_MIN_REQUIN:
             Température_C = "Bonne"
-            if Celsius <= 26.0:
+            Mesure = (math.isclose(Celsius, TEMPERATURE_MIN_REQUIN))
+            if Celsius <= TEMPERATURE_MAX_REQUIN:
                 Température_C = "Bonne"
+                Mesure = (math.isclose(Celsius, TEMPERATURE_MAX_REQUIN))
             else:
                 Température_C = "Mauvaise"
         else:
             Température_C = "Mauvaise"
-        if Kilogrammes >= 60.0:
+        if Kilogrammes >= MASSE_MIN_REQUIN:
             Poid = "Bon"
-            if Kilogrammes <= 150.0:
+            Mesure = (math.isclose(Kilogrammes, MASSE_MIN_REQUIN))
+            if Kilogrammes <= MASSE_MAX_REQUIN:
                 Poid = "Bon"
+                Mesure = (math.isclose(Kilogrammes, MASSE_MAX_REQUIN))
             else:
                 Poid = "Mauvais"
         else:
             Poid = "Mauvais"
-        if Âge >= 60:
-            if Âge < 240:
+        if Âge >= AGE_MIN_ADULTE_REQUIN:
+            Mesure = (math.isclose(Âge, AGE_MIN_ADULTE_REQUIN))
+            if Âge <= AGE_MAX_ADULTE_REQUIN:
                 Type_Age = "Adulte"
+                Mesure = (math.isclose(Âge, AGE_MAX_ADULTE_REQUIN))
+                
             else:
                 Type_Age = "Senior"
         else:
@@ -91,25 +106,31 @@ match Espèce:
         Type_espèce = "tigre"
         normesT = "37,5-39,0"
         normesM = "100,0-260,0"
-        if Celsius >= 37.5:
+        if Celsius >= TEMPERATURE_MIN_TIGRE:
             Température_C = "Bonne"
-            if Celsius <= 39.0:
+            Mesure = (math.isclose(Celsius, TEMPERATURE_MIN_TIGRE))
+            if Celsius <= TEMPERATURE_MAX_TIGRE:
                 Température_C = "Bonne"
+                Mesure = (math.isclose(Celsius, TEMPERATURE_MAX_TIGRE))
             else:
                 Température_C = "Mauvaise"
         else:
             Température_C = "Mauvaise"
-        if Kilogrammes >= 100.0:
+        if Kilogrammes >= MASSE_MIN_TIGRE:
             Poid = "Bon"
-            if Kilogrammes <= 260.0:
+            Mesure = (math.isclose(Kilogrammes, MASSE_MIN_TIGRE))
+            if Kilogrammes <= MASSE_MAX_TIGRE:
                 Poid = "Bon"
+                Mesure = (math.isclose(Kilogrammes, MASSE_MAX_TIGRE))
             else:
                 Poid = "Mauvais"
         else:
             Poid = "Mauvais"
-        if Âge >= 36:
-            if Âge < 144:
+        if Âge >= AGE_MIN_ADULTE_TIGRE:
+            Mesure = (math.isclose(Âge, AGE_MIN_ADULTE_TIGRE))
+            if Âge <= AGE_MAX_ADULTE_TIGRE:
                 Type_Age = "Adulte"
+                Mesure = (math.isclose(Âge, AGE_MAX_ADULTE_TIGRE))
             else:
                 Type_Age = "Senior"
         else:
@@ -132,25 +153,31 @@ match Espèce:
         Type_espèce = "gnou"
         normesT = "37,5-39,0"
         normesM = "120,0-270,0"
-        if Celsius >= 37.5:
+        if Celsius >= TEMPERATURE_MIN_GNOU:
             Température_C = "Bonne"
-            if Celsius <= 39.0:
+            Mesure = (math.isclose(Celsius, TEMPERATURE_MIN_GNOU))
+            if Celsius <= TEMPERATURE_MAX_GNOU:
                 Température_C = "Bonne"
+                Mesure = (math.isclose(Celsius, TEMPERATURE_MAX_GNOU))
             else:
                 Température_C = "Mauvaise"
         else:
             Température_C = "Mauvaise"
-        if Kilogrammes >= 120.0:
+        if Kilogrammes >= MASSE_MIN_GNOU:
             Poid = "Bon"
-            if Kilogrammes <= 2700.0:
+            Mesure = (math.isclose(Kilogrammes, MASSE_MIN_GNOU))
+            if Kilogrammes <= MASSE_MAX_GNOU:
                 Poid = "Bon"
+                Mesure = (math.isclose(Kilogrammes, MASSE_MAX_GNOU))
             else:
                 Poid = "Mauvais"
         else:
             Poid = "Mauvais"
-        if Âge >= 36:
-            if Âge < 180:
+        if Âge >= AGE_MIN_ADULTE_GNOU:
+            Mesure = (math.isclose(Âge, AGE_MIN_ADULTE_GNOU))
+            if Âge < AGE_MAX_ADULTE_GNOU:
                 Type_Age = "Adulte"
+                Mesure = (math.isclose(Âge, AGE_MAX_ADULTE_GNOU))
             else:
                 Type_Age = "Senior"
         else:
@@ -168,6 +195,33 @@ match Espèce:
                 verdict = "SURVEILLANCE"
         else:
             verdict = "NORMAL"  
+
+if Espèce >= 4:
+    Type_espèce = "ERREUR"
+    Température_C = "ERREUR"
+    Poid = "ERREUR"
+    Type_Age = "ERREUR"
+    normesM = "ERREUR"
+    normesT = "ERREUR"
+    verdict = "ERREUR"
+    Mesure = "ERREUR"
+elif Espèce <= 0:
+    Type_espèce = "ERREUR"
+    Température_C = "ERREUR"
+    Poid = "ERREUR"
+    Type_Age = "ERREUR"
+    normesM = "ERREUR"
+    normesT = "ERREUR"
+    verdict = "ERREUR"
+    Mesure = "ERREUR"
+
+
+if Mesure == True:
+    Mesure_Verdict = "oui"
+elif Mesure == False:
+    Mesure_Verdict = "non"
+elif Mesure == "ERREUR":
+    Mesure_Verdict = "ERREUR"
 
 #Indice de Vitalité
 
@@ -189,7 +243,6 @@ LigneÉgal = "="
 Nom_Bâtiment = "CLINIQUE VÉTÉRINAIRE EXOTIQUE"
 Lieux_Bâtiment = "DES ÎLES ST-MAURICE"
 
-
 print(f"{LigneÉgal:=^70}")
 print(f"{Nom_Bâtiment:^70}")
 print(f"{Lieux_Bâtiment:^70}")
@@ -206,7 +259,7 @@ print(f"Conversions")
 print(f"{"Masse":<15}:{Masse2f:>10} lbs ={Kilogrammes2f:>10} kg")
 print(f"{"Température":<15}:{Température2f:>10} °F  ={Celsius2f:>10} °C")
 print(f"{Tiret:-^80}")
-print(f"")
+print(f"{"Mesure à la limite":<30}: {Mesure_Verdict}")
 print(f"{Tiret:-^80}")
 print(f"Indice de vitalité : {Indice_de_vitalité} / 100")
 print(f"VERDICT : {verdict}")
