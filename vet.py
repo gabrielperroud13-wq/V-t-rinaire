@@ -33,7 +33,7 @@ Indice_de_vitalité = 100
 #Varriable fixe
 
 
-TEMPERATURE_MIN_REQUIN = 22.0
+TEMPERATURE_MIN_REQUIN = 21.0
 TEMPERATURE_MAX_REQUIN = 26.0
 MASSE_MIN_REQUIN = 60.0
 MASSE_MAX_REQUIN = 150.0
@@ -56,13 +56,12 @@ AGE_MIN_ADULTE_GNOU = 36
 AGE_MAX_ADULTE_GNOU = 180
 
 # #IF et ELSE et MATCH Température/Masse ET Âge ET normes T/M
-
+from colorama import init, Fore, Back, Style
 import math
-
 match Espèce:
     case 1:
         Type_espèce = "requin"
-        normesT = "22,0-26,0"
+        normesT = "21,0-26,0"
         normesM = "60,0-150,0"
         if Celsius >= TEMPERATURE_MIN_REQUIN:
             Température_C = "Bonne"
@@ -94,13 +93,26 @@ match Espèce:
                 Type_Age = "Senior"
         else:
             Type_Age = "Junévile"
+
+        Indice_de_vitalité = 100
+
+        if (Température_C == "Mauvaise"):
+            Indice_de_vitalité -= 30
+            if (Poid == "Mauvais"):
+                Indice_de_vitalité -= 20
+
+        elif (Poid == "Mauvais"):
+            Indice_de_vitalité -= 20
+            if (Température_C == "Mauvaise"):
+                Indice_de_vitalité -= 30
+
         if Indice_de_vitalité < 100:
             if Température_C == "Mauvaise":
-                verdict = "URGENT"
+                verdict = (Back.RED + "URGENT" + Style.RESET_ALL)
             else:
-                verdict = "SURVEILLANCE"
+                verdict = (Back.YELLOW + "SURVEILLANCE" + Style.RESET_ALL)
         else:
-            verdict = "NORMAL"
+            verdict = (Back.GREEN + "NORMAL" + Style.RESET_ALL)
 
     case 2:
         Type_espèce = "tigre"
@@ -135,19 +147,31 @@ match Espèce:
                 Type_Age = "Senior"
         else:
             Type_Age = "Junévile"
+
+        Indice_de_vitalité = 100
+
+        if (Température_C == "Mauvaise"):
+            Indice_de_vitalité -= 30
+            if (Poid == "Mauvais"):
+                Indice_de_vitalité -= 20
+
+        elif (Poid == "Mauvais"):
+            Indice_de_vitalité -= 20
+            if (Température_C == "Mauvaise"):
+                Indice_de_vitalité -= 30
         if Indice_de_vitalité < 100:
             if Température_C == "Mauvaise":
                 if Poid == "Mauvais":
-                    verdict = "URGENT"
+                    verdict = (Back.RED + "URGENT" + Style.RESET_ALL)
             else:
-                verdict = "SURVEILLANCE"
+                verdict = (Back.YELLOW + "SURVEILLANCE" + Style.RESET_ALL)
             if Poid == "Mauvais":
                 if Température_C == "Mauvaise":
-                    verdict = "URGENT"
+                    verdict = (Back.RED + "URGENT" + Style.RESET_ALL)
             else:
-                verdict = "SURVEILLANCE"
+                verdict = (Back.YELLOW + "SURVEILLANCE" + Style.RESET_ALL)
         else:
-            verdict = "NORMAL"  
+            verdict = (Back.GREEN + "NORMAL" + Style.RESET_ALL)  
 
     case 3:
         Type_espèce = "gnou"
@@ -182,19 +206,34 @@ match Espèce:
                 Type_Age = "Senior"
         else:
             Type_Age = "Junévile"
+
+        Indice_de_vitalité = 100
+
+        if (Température_C == "Mauvaise"):
+            Indice_de_vitalité -= 30
+            if (Poid == "Mauvais"):
+                Indice_de_vitalité -= 20
+
+        elif (Poid == "Mauvais"):
+            Indice_de_vitalité -= 20
+            if (Température_C == "Mauvaise"):
+                Indice_de_vitalité -= 30
+
         if Indice_de_vitalité < 100:
             if Température_C == "Mauvaise":
                 if Poid == "Mauvais":
-                    verdict = "URGENT"
+                    verdict = (Back.RED + "URGENT" + Style.RESET_ALL)
             else:
-                verdict = "SURVEILLANCE"
+                verdict = (Back.YELLOW + "SURVEILLANCE" + Style.RESET_ALL)
             if Poid == "Mauvais":
                 if Température_C == "Mauvaise":
-                    verdict = "URGENT"
+                    verdict = (Back.RED + "URGENT" + Style.RESET_ALL)
+                elif Type_Age == "Senior":
+                    verdict = (Back.RED + "URGENT" + Style.RESET_ALL)
             else:
-                verdict = "SURVEILLANCE"
+                verdict = (Back.YELLOW + "SURVEILLANCE" + Style.RESET_ALL)
         else:
-            verdict = "NORMAL"  
+            verdict = (Back.GREEN + "NORMAL" + Style.RESET_ALL)  
 
 if Espèce >= 4:
     Type_espèce = "ERREUR"
@@ -223,21 +262,8 @@ elif Mesure == False:
 elif Mesure == "ERREUR":
     Mesure_Verdict = "ERREUR"
 
-#Indice de Vitalité
-
-Indice_de_vitalité = 100
-
-if (Température_C == "Mauvaise"):
-    Indice_de_vitalité -= 30
-    if (Poid == "Mauvais"):
-       Indice_de_vitalité -= 20
-
-elif (Poid == "Mauvais"):
-       Indice_de_vitalité -= 20
-       if (Température_C == "Mauvaise"):
-           Indice_de_vitalité -= 30
-
 # Interface des données
+
 
 LigneÉgal = "="
 Nom_Bâtiment = "CLINIQUE VÉTÉRINAIRE EXOTIQUE"
@@ -250,6 +276,7 @@ print(f"{LigneÉgal:=^70}")
 print(f"{"Patient":<18}: {Nom} ({Type_espèce})")
 print(f"{"Âge":<18}: {Année} ans et {Mois} mois ({Type_Age})")
 print(f"{"Saisie":<18}: masse en lbs, température en °F")
+print(f"{"Date":<18}: ")
 print(f"{Tiret:-^80}")
 print(f"{"Mesure":<30}{"Valeur":>20}{"":>5}{"Norme"}")
 print(f"{"Température (°C)":<30}{Celsius2f:>20}{"":>5}{normesT}")
@@ -264,3 +291,8 @@ print(f"{Tiret:-^80}")
 print(f"Indice de vitalité : {Indice_de_vitalité} / 100")
 print(f"VERDICT : {verdict}")
 print(f"{LigneÉgal:=^80}")
+
+
+#Verdict/Mesure ne semble pas marcher
+#Problène Verdict trouvé
+#Reste a faire Date
